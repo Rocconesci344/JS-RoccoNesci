@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.bg{
+    background-color: blue;
+}
+.imgpro{
+    max-width: 250px;
+    width: 100%;
+    max-height: 280px;
+    height: 100%;
+}
+.container{
+    padding: 1rem;
+}
+.cardm{
+    max-width: 300px;
+    width: 100%;
+    max-height: 440px;
+    height: 100%;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.Cform{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.form{
+    max-width: 40pc;
+    width: 100%;
+}
+.TituloP{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.TituloProduct{
+    display: flex;
+    justify-content: center;
+}
+.Price{
+    display: flex;
+    justify-content: center;
+    color: green;
+    padding-top: 10px;
+}
+.btn{
+    display: flex;
+    max-width: 230px;
+    width: 100%;
+    justify-content: center;
+}
