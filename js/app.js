@@ -62,16 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const Juegos = [
-    {ID: 1, nombre: "Tlou", precio: 7000, thumbnail: "../assets/the-last-of-us-part-ii-1.jpg"},
-    {ID:2 ,nombre:"Spiderman", precio:8500, thumbnail: "../assets/spiderman_ps4.jpg"},
-    {ID:3 ,nombre:"Days gone", precio:9250, thumbnail: "../assets/daysgone_ps4.jpg"}
+    {ID: 1, nombre: "Tlou", precio: 7000, thumbnail: "./assets/the-last-of-us-part-ii-1.jpg"},
+    {ID:2 ,nombre:"Spiderman", precio:8500, thumbnail: "./assets/spiderman_ps4.jpg"},
+    {ID:3 ,nombre:"Days gone", precio:9250, thumbnail: "./assets/daysgone_ps4.jpg"}
 ]
 
 const nuevoJuego = {
     ID: Juegos.length + 1,
     nombre: "Minecraft",
     precio: 7777,
-    thumbnail: "../assets/minecraft-ps4.jpg"
+    thumbnail: "./assets/minecraft-ps4.jpg"
 };
 
 Juegos.push(nuevoJuego);
