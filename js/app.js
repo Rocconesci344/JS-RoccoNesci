@@ -61,11 +61,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-const Juegos = [
-    {ID: 1, nombre: "Tlou", precio: 7000, thumbnail: "./assets/the-last-of-us-part-ii-1.jpg"},
-    {ID:2 ,nombre:"Spiderman", precio:8500, thumbnail: "./assets/spiderman_ps4.jpg"},
-    {ID:3 ,nombre:"Days gone", precio:9250, thumbnail: "./assets/daysgone_ps4.jpg"}
-]
+const juegosJSON = [
+    '{"ID": 1, "nombre": "Tlou", "precio": 7000, "thumbnail": "./assets/the-last-of-us-part-ii-1.jpg"}',
+    '{"ID": 2, "nombre": "Spiderman", "precio": 8500, "thumbnail": "./assets/spiderman_ps4.jpg"}',
+    '{"ID": 3, "nombre": "Days gone", "precio": 9250, "thumbnail": "./assets/daysgone_ps4.jpg"}'
+];
+
+const jJSON = '[' + juegosJSON.join(',') + ']';
+
+const Juegos = JSON.parse(jJSON);
+
+console.log(Juegos);
 
 const nuevoJuego = {
     ID: Juegos.length + 1,
@@ -139,19 +145,55 @@ function agregarAlCarrito(Name, Price) {
     carrito.appendChild(productoEnCarrito);
 }
 
+
 function agregarProducto(Name, Price, thumbnail) {
     const card = document.createElement('div');
-    card.classList.add('card', 'col-md-4,', 'cardm');
+    card.classList.add('card', 'col-md-4', 'cardm');
     card.innerHTML = `
         <div class="card-body">
             <h5 class="card-title TituloProduct">${Name}</h5>
             <img class="imgpro" src=${thumbnail} alt="Minecraft">
             <p class="card-text Price">Precio: $${Price}</p>
-            <button class="btn btn-primary" onclick="agregarAlCarrito('${Name}', ${Price})">Agregar al Carrito</button>
+            <button class="btn btn-primary" onclick="agregarAlCarritoYMostrarAlert('${Name}', ${Price})">Agregar al Carrito</button>
         </div>
     `;
     productos.appendChild(card);
+
+    fetch('js/main.js')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al obtener los datos');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error en la solicitud fetch:', error);
+        });
 }
+
+
+function agregarAlCarritoYMostrarAlert(nombre, precio) {
+    agregarAlCarrito(nombre, precio);
+    mostrarSweetAlert();
+}
+
+function mostrarSweetAlert() {
+    Swal.fire({
+        title: "Perfecto!",
+        text: "El juego a sido agregado al carrito con exito!",
+        icon: "success"
+    });
+}
+
+
+function agregarAlCarrito(nombre, precio) {
+    console.log(`Agregado al carrito: ${nombre} - $${precio}`);
+}
+
+
 
 agregarProducto(Juegos[0].nombre, preciosActualizados[0].precio, Juegos[0].thumbnail);
 agregarProducto(Juegos[1].nombre, preciosActualizados[1].precio, Juegos[1].thumbnail);
