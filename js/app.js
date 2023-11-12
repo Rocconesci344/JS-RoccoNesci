@@ -71,8 +71,6 @@ const jJSON = '[' + juegosJSON.join(',') + ']';
 
 const Juegos = JSON.parse(jJSON);
 
-console.log(Juegos);
-
 const nuevoJuego = {
     ID: Juegos.length + 1,
     nombre: "Minecraft",
@@ -158,7 +156,6 @@ function agregarProducto(Name, Price, thumbnail) {
         </div>
     `;
     productos.appendChild(card);
-
     fetch('js/main.js')
         .then(response => {
             if (!response.ok) {
@@ -178,6 +175,7 @@ function agregarProducto(Name, Price, thumbnail) {
 function agregarAlCarritoYMostrarAlert(nombre, precio) {
     agregarAlCarrito(nombre, precio);
     mostrarSweetAlert();
+    actualizarCarritoVisual();
 }
 
 function mostrarSweetAlert() {
@@ -188,12 +186,20 @@ function mostrarSweetAlert() {
     });
 }
 
-
+const carritoProductos = [];
 function agregarAlCarrito(nombre, precio) {
+    carritoProductos.push({ nombre, precio });
     console.log(`Agregado al carrito: ${nombre} - $${precio}`);
 }
 
-
+function actualizarCarritoVisual() {
+    carrito.innerHTML = '';
+    carritoProductos.forEach(producto => {
+        const productoEnCarrito = document.createElement('p');
+        productoEnCarrito.textContent = `${producto.nombre} - $${producto.precio}`;
+        carrito.appendChild(productoEnCarrito);
+    });
+}
 
 agregarProducto(Juegos[0].nombre, preciosActualizados[0].precio, Juegos[0].thumbnail);
 agregarProducto(Juegos[1].nombre, preciosActualizados[1].precio, Juegos[1].thumbnail);
